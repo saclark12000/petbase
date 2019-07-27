@@ -1,0 +1,111 @@
+<link rel="stylesheet" type="text/css" media="screen" href="/css/navbarUp.css">
+
+<div class="topnav" id="mainTopnav">
+    <a href="/"><i class="fas fa-paw"></i></a>
+    <a href="/search">Adoptable Pets</a>
+    <a href="/#about">About</a>
+    
+    <% if (!currentUser){ %>
+        <a class="right" href="/login">Log in</a>
+        <a class="right" href="/register">Sign up</a>
+    <% } else { %>
+        <div class="dropdown right">
+            <button class="dropbtn"><%= currentUser.username %> 
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a class="dropdown-item" href="/pets/new">Add a pet</a>
+                <a class="dropdown-item" href="/users/">Profile</a>
+                <hr>
+                <a class="dropdown-item" href="/logout">Log out</a>
+            </div>
+          </div> 
+    <% } %>
+    
+    <a href="javascript:void(0);" class="icon" onclick="responsive()">&#9776;</a>
+  </div>
+
+<script>
+    function responsive() {
+        var x = document.getElementById("mainTopnav");
+        if (x.className === "topnav") {
+          x.className += " responsive";
+        } else {
+          x.className = "topnav";
+        }
+      }
+</script>
+
+<!-- 
+<div class="nav">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+          <div class="nav-title">
+                <i class="fas fa-paw"></i>
+          </div>
+        </div>
+        <div class="nav-btn">
+          <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
+        
+        <div class="nav-links">
+            <% if (!currentUser){ %>
+                <a href="../login">Log in</a>
+                <a href="../register">Sign up</a>
+            <% } else { %>
+                <div class="dropdown">
+                        <a href="#"><span><%= currentUser.username %></span></a>
+                    <div class="dropdown-content">
+                        <a class="dropdown-item" href="/pets/new">Add a pet</a>
+                        <a class="dropdown-item" href="#">Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/logout">Log out</a>
+                    </div>
+                </div>
+           <% } %>
+        </div>
+      </div> -->
+
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
+    <a class="navbar-brand" href="/">
+        <i class="fas fa-paw"></i>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home </a>
+        </li>
+        
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <% if (!currentUser){ %>
+                <li class="nav-item"><a class="nav-link" href="../login">Log in</a></li>
+                <li class="nav-item"><a class="nav-link" href="../register">Sign up</a></li>
+            <% } else { %>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <%= currentUser.username %>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/pets/new">Add a pet</a>
+                        <a class="dropdown-item" href="#">Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/logout">Log out</a>
+                    </div>
+                </li>
+            <% } %>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" action="/search/results/" method="post">
+        <input class="form-control mr-sm-2" name="search" id="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-petbase my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav> -->

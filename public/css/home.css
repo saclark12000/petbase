@@ -1,0 +1,266 @@
+/* 
+font-family: 'Quicksand', sans-serif; - Main font
+font-family: 'Oswald', sans-serif; - pop font
+
+Light Green - #96C69F
+Medium Green - #47AB5B
+Dark Green - #013220
+
+Orange - #F9B565
+
+Light Purple - #8C75B5
+Dark Purple - 593C97
+
+-----------
+Formatting for Landing/Home page
+*/
+
+body {
+    margin: 0;
+    background-color: #96C69F;
+    font-family: 'Quicksand', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+  }
+
+
+/* ---------- main page formating -------------- */
+.main{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    min-height: 400px;
+    width: 100%;
+    min-width: 500px;
+    background-image: url('/imgs/home.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.main-inside{
+    width: 500px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    color: #593C97;
+    background-color: rgba(150,198,159,.75);
+    padding: 0px;
+    border-radius: 15px;
+}
+
+.main h1{
+    font-size: 3em;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    margin: 5px 0 0 0;
+    text-transform: uppercase;
+    
+}
+
+.main p {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    margin: 0 0 10px 0px;
+    letter-spacing: 1px;
+}
+
+.main a {
+    color: #593C97;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color .8s, border-bottom 1s;
+}
+
+.main a:hover {
+    color: #013220;
+    border-bottom: 1px solid #013220;
+}
+
+.main .mainAboutLink {
+    display: flex;
+}
+
+.main .mainAboutLink i {
+    padding: 0 5px;
+}
+
+.main-padding {
+    display:flex;
+    flex-direction: row;
+    width:100%;
+}
+
+.main-tack {
+    font-size: 24px;
+    color: #593C97;
+    flex-grow: 1;
+}
+
+.right{
+    padding-right: 5px;
+    text-align: right;
+    align-content: right;
+}
+
+.left{
+    padding-left: 5px;
+    text-align: left;
+    align-content: left;
+}
+
+/* --------------- About / What is Section Formating ------------------------ */
+
+.about{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    min-height: 500px;
+    width: 100%;
+    min-width: 500px;
+    background-image: linear-gradient(#47AB5B, #96C69F);
+    
+}
+
+.about-inside{
+    position: relative;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    color: #593C97;
+    border-radius: 15px;
+    height: 100%;
+    min-height: 500px;
+    width: 100%;
+}
+
+.about-title{
+    align-self: center;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.petbaseFormat{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.about p {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: normal;
+    margin: 0;
+}
+
+.about .infobox{
+    flex-grow: 1;
+    width:100%;
+    min-width:500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.about .infobox .leftType{
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    min-width: 150px;
+    background-color: #F9B565;
+}
+
+.leftType .infoUserCat{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 75px;
+    height:100%;
+    width: 100%;
+    color: #8C75B5;
+    opacity: .4;
+    transition: opacity .2s;
+}
+
+
+.infoUserCat .infoGraphic {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 75px;
+    height: 100%;
+    width: 100%;
+}
+
+.infoUserCatLabel i{
+    font-size: 42px;
+}
+
+.infoSelectArrowContainer i{
+    font-size: 72px;
+    color: #96C69F;
+    text-align: right;
+    letter-spacing: -10px;
+}
+
+#arrowpetOwners, #arrowadoptions, #arrowprofessionals {
+    opacity: 0;
+}
+
+.infoUserCat.infoSelect{
+    opacity: 1;
+    color:#8C75B5;
+}
+
+.infoHover:hover {
+    opacity: 1;
+    text-decoration: none;
+    color: #8C75B5;
+    cursor: pointer;
+}
+
+.about .infobox .rightType{
+    flex-grow:1;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-width: 150px;
+    height: 100%;
+    background-color: rgb(150,198,159);
+}
+
+.rightType .infoContent{
+    padding:15px;
+}
+
+#intro{
+    display: flex;
+}
+
+#blurbpetOwners{
+    display:none;
+    opacity: 0;
+}
+
+#blurbadoptions{
+    display:none;
+    opacity: 0;
+}
+
+#blurbprofessionals{
+    display:none;
+    opacity: 0;
+}

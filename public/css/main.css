@@ -1,0 +1,56 @@
+/* 
+font-family: 'Quicksand', sans-serif; - Main font
+font-family: 'Oswald', sans-serif; - pop font
+
+Light Green - #96C69F
+Medium Green - #47AB5B
+Dark Green - #013220
+
+Orange - #F9B565
+
+Light Purple - #8C75B5
+Dark Purple - #593C97
+
+-----------
+Main Formatting for all pages, linked in header partial.
+*/
+
+body {
+    margin: 0;
+    background-color: #96C69F;
+    font-family: 'Quicksand', sans-serif;
+    color: #8C75B5;
+    min-width: 300px;
+}
+
+html {
+    scroll-behavior: smooth;
+  }
+
+#main{
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    color: #8C75B5;
+    padding: 0px;
+    border-radius: 15px;
+}
+
+#main h1{
+    font-size: 3em;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    margin: 5px 0 0 0;
+    text-transform: uppercase;
+}
+
+#main p {
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    margin: 0 0 10px 0px;
+    letter-spacing: 1px;
+}
+
+

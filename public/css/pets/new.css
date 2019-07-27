@@ -1,0 +1,247 @@
+body{
+    background: #47AB5B;
+    margin-bottom: 10px;
+}
+
+h3{
+    font-size: 28px;
+    font-weight: 250;
+    margin: 10px 0;
+}
+
+.container{
+    display: flex;
+    flex-flow: column wrap;
+    padding: 0 15px;
+    margin: auto;
+    width: 80vw;
+    min-width: 350px;
+    background-color:#96C69F;
+    border-radius: 5px;
+    border: 1px solid #013220;
+    margin-top: 10px;
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+.form-items{
+    display:flex;
+    justify-content: center;
+    width: 300px;
+    margin: 5px 0;
+}
+
+/* Image Upload Styling */
+#image{
+    display:none;
+}
+
+.left{
+    margin: 0 5px;
+    display: flex;
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    border: 1px solid gray;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: flex-start;
+    border-radius: 5px;
+}
+
+#imgULUI{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#imgULUI :hover {
+    cursor: pointer;
+}
+
+.imgUpDis{
+    height: 100%;
+    width: 100%;
+}
+
+#previewImgArea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+#ulDirections{
+    position: relative;
+    display: block;
+    flex-grow: 1;
+    text-align: center;
+}
+
+#ulDirectionsBG{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height:100%;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+#ulDirectionsBG span{
+    padding: 5px;
+    font-weight: 500;
+}
+
+#ulDirections i{
+    font-size: 108px;
+    color:#F9B565;
+    opacity: .4;
+}
+
+#ulPreview{
+    display: none;
+    position: relative;
+    flex-grow: 1;
+    text-align: center;
+}
+
+#ulPreview:hover > #ulPreviewOverlay{
+    opacity: .85;
+}
+
+#ulPreviewOverlay{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height:100%;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #013220;
+    opacity: 0;
+    transition: opacity .8s;
+}
+
+#ulPreviewOverlay span{
+    padding: 5px;
+    font-weight: bold;
+    color: white;
+}
+
+.ulprev{
+    object-fit: cover;
+    margin: 0px;
+    border-radius: 5px;
+    width: 200px;
+    height: 200px;
+}
+
+/* Name/Breed/Species input fields */
+.row .right {
+    margin: 0 5px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-items: space-between;
+}
+
+#name{
+    text-align: center;
+    padding-left: 3px;
+}
+
+.inputFields{
+    font-size: 18px;
+    font-family: 'Quicksand', sans-serif;
+    height:32px;
+    border-radius: 5px;
+}
+
+.inputFields.full{
+    width: 300px;
+}
+
+.inputFields.half{
+    margin: 0 2px;
+    width: 125px;
+}
+
+.inputFields:focus, textarea:focus, #imgULUI:focus {
+    box-shadow: 0 0 0 0.2rem rgba(249,181,101, 0.25);
+    border-color: #F9B565; 
+    outline: none;  
+}
+
+/* custom select2 focus options for breed selection box */
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    box-shadow: 0 0 0 0.2rem rgba(249,181,101, 0.25);
+    border-color: #F9B565;
+    height: 64px;
+    overflow-y: scroll;
+    width: 300px;
+}
+
+.select2-container--default .select2-selection--multiple {
+    height: 64px;
+    width: 300px;;
+    overflow-y: scroll;
+    border-radius: 5px;
+    
+}
+
+small{
+    font-size: 75%;
+}
+
+/* Description formating */
+.description-container{
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center; 
+}
+
+#description{
+    min-width: 300px;
+    width: 100%;
+    max-width:550px;
+    height: 128px;
+    font-size: 18px;
+    font-family: 'Quicksand', sans-serif;  
+    border-radius: 5px;
+}
+
+#description:focus {
+    box-shadow: 0 0 0 0.2rem rgba(249,181,101, 0.25);
+    border-color: #F9B565; 
+    outline: none;
+}
+
+.row button {
+    margin: 5px;
+    background-color: #47AB5B;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.footer{
+    height: 32px;
+}

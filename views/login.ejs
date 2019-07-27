@@ -1,0 +1,35 @@
+<% include partials/header %>
+<% include partials/navbarUp %>
+
+<link rel="stylesheet" type="text/css" media="screen" href="/css/users/login.css">
+<div class="container">
+        <div class="row">
+            <div id="main">
+                <h1>PETBASE</h1>
+                <p>Connecting pets to the information we need to share.</p>
+            </div>
+        </div>
+        <div class="row">
+            <h3>Login</h3>
+        </div>
+        <div class="row">
+<form action="/login" method="post">
+    <div class="row">
+    <div>
+        <label for="username">Username: </label>
+        <input class="inputFields full" type="text" id="username" name="username" placeholder="username">
+    </div>
+    </div>
+    <div class="row">
+    <div>
+        <label for="password">Password: </label>
+        <input class="inputFields full" type="password" id="password" name="password" placeholder="password">
+    </div>
+    </div>
+    <div class="row">
+        <button>Login</button>
+    </div>
+</form>
+</div>
+<div class="footer"></div>
+<% include partials/footer %>

@@ -1,0 +1,68 @@
+<% include ../partials/header %>
+<% include ../partials/navbarUp %>
+
+<link rel="stylesheet" type="text/css" media="screen" href="/css/users/index.css">
+
+<div id="main">
+  <h1>PETBASE</h1>
+  <p>Connecting pets to the information we need to share.</p>
+</div>
+<hr>
+
+
+<div id="results-container">
+  <div class="header">
+    <h2><%=currentUser.username%>'s Pet Records</h2>
+  </div>
+  <% results.forEach(function(currPet){%>
+    <div class="petcard">
+      <div class="left">
+        <div class="overlay">
+          <a href="/pets/<%= currPet.id %>" id="view-<%=currPet.id%>">
+             <i class="far fa-eye"></i> View 
+          </a>
+          <a href="/pets/<%= currPet.id %>/edit" id="edit-<%=currPet.id%>">
+           <i class="fas fa-edit"></i> Edit
+          </a>
+          <form id="delete-<%=currPet.id%>" action="/pets/<%= currPet.id %>?_method=DELETE" method="POST">
+            <a href="javascript:$('#delete-<%=currPet.id%>').submit();">
+              <i class="far fa-trash-alt"></i></i> Delete
+            </a>
+          </form>
+        </div>
+        <img class="results-img" src="<%=currPet.images.cover%>">
+      </div>
+      <div class="right short">
+        <h3>
+          <%= currPet.name %>
+        </h3>
+        <hr>
+        <div class="item">
+          <%= currPet.breed.length > 1 ? "Mixed Breed": currPet.breed %>
+        </div>   
+      </div> 
+    </div>
+  <%})%>
+  <div class="petcard add">
+      <div class="left">
+        <div class="overlay">
+          <a href="/pets/new">
+            <i class="fas fa-plus-circle"></i><br>
+            <span>Add another pet! </span>
+          </a>
+        </div>
+        <i class="fas fa-paw"></i>
+      </div>
+      <div class="right short">
+        <h3>
+          New Pet
+        </h3>
+        <hr>
+        <div class="item">
+          Add all of your pets!
+        </div>  
+      </div> 
+    </div>
+</div>
+
+<% include ../partials/footer %>

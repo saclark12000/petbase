@@ -1,0 +1,88 @@
+<% include ../partials/header %>
+<% include ../partials/navbarUp %>
+<script type="text/javascript" src="/js/pets/new.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="/css/pets/new.css">
+
+<form action="/pets" method="POST" enctype="multipart/form-data">
+    <div class="container">
+        <div class="row">
+            <div id="main">
+                <h1>PETBASE</h1>
+                <p>Connecting pets to the information we need to share.</p>
+            </div>
+        </div>
+        <div class="row">
+            <h3>Create a New Pet Record</h3>
+        </div>
+        <div class="row">
+            <div class="left">
+                <div id="imgULUI">
+                    <label class="imgUpDis">
+                        <div id="previewImgArea">
+                            <div id="ulDirections">
+                                <div id="ulDirectionsBG">
+                                    <span>
+                                    Click here to select a cover photo. More photos can be added later.
+                                    </span>    
+                                </div>
+                                <i class="far fa-image"></i>
+                            </div>
+                            <div id="ulPreview">
+                                <div id="ulPreviewOverlay">
+                                    <span>
+                                        Click here to reselect a cover photo. More photos can be added later.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <input class="" type="file" id="image" name="cover" onchange="breedObj.previewFiles()" onclick="breedObj.resetImg()" required>
+                    </label>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="form-items"> 
+                    <input id="name" class="inputFields full" name="pet[name]" type="text" maxlength="20" placeholder="Click here to enter pet name." required>         
+                </div>
+                <div class="form-items">
+                    <select class="inputFields full" id="species" name="pet[species]" placeholder="Choose species" required onchange="breedObj.setSpecies(value)">
+                        <option selected disabled hidden>Click here to select species.</option>
+                        <option value="cat">Cat</option>
+                        <option value="dog">Dog</option>
+                    </select>
+                </div>
+                <div class="form-items">
+                    <div id="breedselect">
+                        <select class="multiple-limit inputFields full" name="pet[breed]" multiple="multiple" required></select>
+                        <small id="breedHelp" class="">For mixed breeds, select up to 3 best guess breeds.</small>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="description-container">
+                <label for="description">Description:</label>
+                <textarea id="description" class="" maxlength="500"  name="pet[description]" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-items">
+                <input type="radio" name="pet[adoptable]" id="adoptable" value="true">
+                <label for="adoptable">List this pet in PETBASE adoption database.</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-items">
+                <input type="radio" name="pet[adoptable]" id="noadoptable" value="false" checked>
+                <label for="noadoptable">Do not list this pet in PETBASE adoption database.</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-items">
+                <button class="btn">Submit</button>
+            </div>
+        </div>
+        <div class="footer"></div>
+    </div>
+</form>
+<% include ../partials/footer %>

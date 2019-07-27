@@ -1,0 +1,86 @@
+<% include ../partials/header %>
+<% include ../partials/navbarUp %>
+<script type="text/javascript" src="/js/pets/new.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="/css/pets/new.css">
+
+<form action="/pets/<%=pet._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+<div class="container">
+    <div class="row">
+        <div id="main">
+            <h1>PETBASE</h1>
+            <p>Connecting pets to the information we need to share.</p>
+        </div>
+    </div>
+    <div class="row">
+        <h3>Edit <%= pet.name %>'s Pet Record</h3>
+    </div>
+    <div class="row">
+        <div class="left">
+            <div id="imgULUI" class="edit" value="<%= pet.images.cover %>">
+                <label class="imgUpDis">
+                    <div id="previewImgArea">
+                        <div id="ulDirections">
+                            <div id="ulDirectionsBG">
+                                <span>
+                                Click here to select a cover photo. More photos can be added later.
+                                </span>    
+                            </div>
+                            <i class="far fa-image"></i>
+                        </div>
+                        <div id="ulPreview">
+                                <div id="ulPreviewOverlay">
+                                    <span>
+                                        Click here to reselect a cover photo. More photos can be added later.
+                                    </span>
+                                </div>
+                            </div>
+                    </div>
+                    <input class="" type="file" id="image" name="cover" onchange="breedObj.previewFiles()" onclick="breedObj.resetImg()">
+                </label>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="form-items"> 
+                <input id="name" class="inputFields full" name="pet[name]" type="text" maxlength="20" placeholder="Click here to enter pet name." required value="<%= pet.name %>">         
+            </div>
+            <div class="form-items">
+                <select class="inputFields full" id="species" name="pet[species]" placeholder="Choose species" required onchange="breedObj.setSpecies(value)">
+                    <% if (pet.species == "dog") { %> <option value="dog" selected> <%} else {%> <option value="dog"> <%}%> Dog </option>
+                    <% if (pet.species == "cat") { %> <option value="cat" selected> <%} else {%> <option value="cat"> <%}%> Cat </option>
+                </select>
+            </div>
+            <div class="form-items">
+                <input class="form-control" type="text" id="preselctedbreed" value="<%= pet.breed %>" style="display: none">
+                <div id="breedselect" class="edit" value="<%= pet.breed %>">
+                    <select class="multiple-limit inputFields full" name="pet[breed]" multiple="multiple"></select>
+                    <small id="breedHelp" class="">For mixed breeds, select up to 3 best guess breeds.</small>
+                </div> 
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="description-container">
+            <label for="description">Description:</label>
+            <textarea id="description" class="" maxlength="500"  name="pet[description]" rows="3"><%= pet.description %></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-items">
+            <input type="radio" name="pet[adoptable]" id="adoptable" value="true" <% if (pet.adoptable) { %> checked <% } %>>
+            <label for="adoptable">List this pet in PETBASE adoption database.</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-items">
+            <input type="radio" name="pet[adoptable]" id="noadoptable" value="false" <% if (!pet.adoptable) { %> checked <% } %>>
+            <label for="noadoptable">Do not list this pet in PETBASE adoption database.</label>
+        </div>
+    </div>
+    <div class="row">
+        <button class="btn">Update</button>
+    </div>
+    <div class="footer"></div>
+</div>
+</form>
+<% include ../partials/footer %>

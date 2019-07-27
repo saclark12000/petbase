@@ -1,0 +1,53 @@
+<% include ../partials/header %>
+<% include ../partials/navbarUp %>
+
+<script type="text/javascript" src="/js/pets-index.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="/css/search/index.css">
+
+<div id="main">
+  <h1>PETBASE</h1>
+  <p>Connecting pets to the information we need to share.</p>
+</div>
+
+<form id="search" class="" action="/search/results/" method="post">
+  <input class="inputFields full" name="search" id="search" placeholder="Search Adoptable Pets" aria-label="Search" required>
+  <button class="" type="submit">Search</button>
+</form>
+<hr>
+
+
+
+<div id="results-container">
+  <div class="header">
+    <h2>PETBASE Adoptions</h2>
+    <% if (!term) { %>
+      <p>Browse all <%=results.length%> adoptable pet records.</p>
+    <% } else { %>
+      <p>Your search for <em><%= term %></em> had <%= results.length %> matches.</p>
+    <% } %>
+  </div>
+  <% results.forEach(function(currPet){%>
+    <a href="/pets/<%= currPet.id %>" id="pc-<%=currPet.id%>" class="petcard">
+      <div class="left">
+        <div class="overlay">
+            <span>Click to learn more about this <%=currPet.species%>.</span>
+        </div>
+        <img class="results-img" src="<%=currPet.images.cover%>">
+      </div>
+      <div class="right">
+        <h3>
+          <%= currPet.name %>
+        </h3>
+        <hr>
+        <div class="item">
+          <%= currPet.breed.length > 1 ? "Mixed Breed": currPet.breed %>
+        </div>
+        <div class="item">
+          <%= currPet.description.length > 100 ? currPet.description.substring(0, 25) + "...": currPet.description %>
+        </div>    
+      </div> 
+    </a>
+  <%})%>
+</div>
+<!-- <p><%= results %></p> -->
+<% include ../partials/footer %>

@@ -1,0 +1,60 @@
+<% include ../partials/header %>
+<% include ../partials/navbarUp %>
+<link rel="stylesheet" type="text/css" media="screen" href="/css/pets/show.css">
+
+<div class="container">
+    <div class="row">
+        <div id="main">
+            <h1>PETBASE</h1>
+            <p>Connecting pets to the information we need to share.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <h3><%= pet.name %>'s Pet Record</h3>     
+    </div>
+    <div class="row-img">
+        <img class="ulprev" src="<%=pet.images.cover%>">
+    </div>
+    <div class="row">
+        <div class="item">
+            <%=pet.species[0].toUpperCase() + pet.species.slice(1)%>
+        </div>
+    </div>
+    <div class="row">
+        <div class="item">
+            <div class="breed-list">
+                <%pet.breed.forEach(function(listBreed){%>
+                    <div><%=listBreed%></div>
+                <%});%>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="description-container">
+            <%=pet.description%>
+        </div>
+    </div>
+    <div class="row">
+        <% if (currentUser && pet.author.id.equals(currentUser.id)) { %>
+            <a href="<%= pet._id %>/edit">
+                <button>
+                    <i class="fas fa-edit"></i> Edit
+                </button>
+            </a>
+            <form action="/pets/<%= pet.id %>?_method=DELETE" method="POST">
+                <button>
+                    <i class="far fa-trash-alt"></i> Delete
+                </button>
+            </form>
+
+        <% } %>
+        <a href="/users/">
+                <button>
+                    <i class="fas fa-user"></i> Your Profile
+                </button>
+            </a>
+    </div>
+    <div class="footer"></div>
+</div>
+<% include ../partials/footer %>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PETBASE</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Quicksand" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/home.css">
+</head>
+<body>
+    <div class="main" id="main">
+        <div class="main-inside animated bounceInUp">
+            <div class="main-padding">
+                <div class="main-tack left animated heartBeat"><i class="fas fa-paw"></i></div>
+                <div class="main-tack right animated heartBeat"><i class="fas fa-paw"></i></div>
+            </div>
+            <h1>Petbase</h1>
+            <p class="animated fadeIn delay-1s">Connecting pets to the information we need to share.</p>
+            <a href="/search">Adoptable Pets</a>
+            
+                <% if (!currentUser){ %>
+                    <div>
+                        <a class="" href="../login">Log in</a> or
+                        <a class="" href="../register">Sign up</a>
+                    </div>
+                <% } else {%>
+                    <div>
+                        <a class="" href="/users"><%=currentUser.username%>s Pets</a>
+                    </div>
+                    <div>
+                        <a class="" href="/logout">Log out</a>
+                    </div>
+                <% } %>
+            <div class="mainAboutLink">
+                <i class="fas fa-sort-down"></i>
+                <a class="" href="#about"> What is Petbase? </a>
+                <i class="fas fa-sort-down"></i>
+            </div>
+            <div class="main-padding">
+                <div class="main-tack left animated heartBeat"><i class="fas fa-paw"></i></div>
+                <div class="main-tack right animated heartBeat"><i class="fas fa-paw"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="about" id="about">
+        <div class="about-inside">
+            <div class="about-title">
+                What is <span class="petbaseFormat">Petbase</span>?
+            </div>
+
+            <div class="infobox">
+                <div class="leftType">
+
+                    <div id="petOwners" class="infoUserCat infoHover">
+                        <div class="infoGraphic">
+                            <div class="infoUserCatLabel">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <p>Pet owners...</p>
+                            </div>
+                        </div>
+                        <div id="arrowpetOwners" class="infoSelectArrowContainer animated">
+                            <i class="fas fa-caret-left"></i>
+                        </div>
+                    </div>
+
+                    <div id="adoptions" class="infoUserCat infoHover">
+                        <div class="infoGraphic">
+                            <div class="infoUserCatLabel">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <p>Adoptions...</p>
+                            </div>
+                        </div>
+                        <div id="arrowadoptions" class="infoSelectArrowContainer animated">
+                                <i class="fas fa-caret-left"></i>
+                        </div>
+                    </div>
+
+                    <div id="professionals" class="infoUserCat infoHover">
+                        <div class="infoGraphic">
+                            <div class="infoUserCatLabel">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <div>
+                                <p>Professionals...</p>
+                            </div>
+                        </div>
+                        <div id="arrowprofessionals" class="infoSelectArrowContainer animated">
+                                <i class="fas fa-caret-left"></i>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="rightType">
+                    <div class="infoContent">
+                        <div id="blurbintro" >
+                            <% include partials/blurbs/intro %>
+                        </div>
+                        <div id="blurbpetOwners">
+                            <% include partials/blurbs/owners %>
+                        </div>
+                        <div id="blurbadoptions">
+                            <% include partials/blurbs/adoptions %>
+                        </div>
+                        <div id="blurbprofessionals">
+                            <% include partials/blurbs/professionals %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="/js/home.js"></script>
+</body>
+</html>
