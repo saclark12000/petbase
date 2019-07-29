@@ -1,47 +1,50 @@
-var mongoose = require('mongoose'),
-    sharp = require('sharp'),
-    path = require('path'),
-    fs = require('fs');
+var express = require("express"),
+    multer  = require('multer'),
+    s3Storage = require('multer-sharp-s3'),
+    aws = require('aws-sdk'),
+    path    = require('path'),
+    mongoose = require('mongoose');
 
 imgMan = {};
 
-imgMan.processImg = function(imgPath){
-    //Allow source file to be deleted after upload
-    sharp.cache(false);
-    //Path to file from this file
-    var imgURL = path.join(__dirname, "../../", imgPath);
-    //Path to file from here + a random name + extension
-    var finURL = 'public/uploads/imgs/'+mongoose.Types.ObjectId()+path.extname(imgPath);
+// multer-sharp-s3 config
+aws.config.update({
+    secretAccessKey: process.env.AWSSECRETKEY,
+    accessKeyId: process.env.AWSKEYID,
+    region: 'us-east-2'
+    });
 
-    //Using sharp library to resize files
-    sharp(imgURL)
-    .resize(250, 250, {
-        fit: 'cover'
-    })
-    .toFile(finURL)
-    .then(()=>{
-        //Removes original file after resize
-        fs.unlink(imgURL, (err) => {
-            if (err) {
-              console.error(err)
-              return
-            }
-        })
-    })
-    .catch(()=>{console.log('Error during the image transformation.')});
-    // Sending back resized file's url with leading 'public' removed, static
-    return finURL.slice(6)  
-}
+var s3 = new aws.S3();
 
-imgMan.removeImg = function(imgPath){
-    //Path to file from this file
-    var imgURL = path.join(__dirname, "../../", imgPath);
-    fs.unlink(imgURL, (err) => {
-        if (err) {
-          console.error(err)
-          return
-        }
-    })
+const storage = s3Storage({
+    s3,
+    Bucket: 'petbase',
+    Key: function (req, file, cb) {
+        //console.log("USER ID ==>", req.user._id);
+        //console.log("userUploads/" + req.user._id + "/imgs/" + mongoose.Types.ObjectId() + path.extname(file.originalname))
+        cb(null, "userUploads/" + req.user._id + "/imgs/" + mongoose.Types.ObjectId() + path.extname(file.originalname));
+        },
+    resize: {
+      width: 250,
+      height: 250,
+      options: {fit: 'cover'}
+    }
+  });
+
+// Upload Middleware
+imgMan.upload = multer({ storage: storage });
+
+// Remove Cover Image
+imgMan.deleteFile = function(file) {
+    //console.log('removing ==>', file)
+    var params = {
+        Bucket: 'petbase',
+        Key: file
+    };
+    s3.deleteObject(params, function (err, data) {
+        if (err) console.log(err, err.stack); // an error occurred
+        else     console.log(data);           // successful response
+    });
 }
 
 module.exports = imgMan;

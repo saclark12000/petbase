@@ -86,3 +86,7 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+#Seed Files
+seedDB.js
+public/seed

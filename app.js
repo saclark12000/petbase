@@ -8,6 +8,7 @@ var express                 = require("express"),
     path                    = require('path'),
     multer                  = require('multer'),
     dotenv                  = require('dotenv').config();
+    aws                     = require('aws-sdk');
 
 //Models
 var Pet                     = require("./models/pet");
@@ -33,8 +34,8 @@ app.use(express.static(path.join(__dirname, "/public")));
 // app.use(express.static(__dirname +"/public"));
 app.use(methodOverride('_method'));
 
-//Clear petbase>pets and fill with some clear records
-//seedDB();
+// Function to clear all pets and users and fill with some clear records and the petbaseadmin
+// seedDB();
 
 //Passport Config
 app.use(require('express-session')({
