@@ -21,7 +21,7 @@ var indexRoutes             = require("./routes/index"),
     searchRoutes            = require("./routes/search");
 
 //Database fill
-var seedDB                  = require("./seedDB");
+// var seedDB                  = require("./seedDB");
 
 //Mongoose
 mongoose.connect(process.env.DB_ACCESS, { useNewUrlParser: true });
@@ -64,5 +64,4 @@ const port = process.env.PORT || 3000
 
 app.listen(port, function(){
     console.log("Petbase server started....");
-    console.log("http://localhost:3000/");
 });
