@@ -21,19 +21,14 @@ var petSchema = new mongoose.Schema({
       type: Boolean,
       default: false
   }
-
-   // Future Update Ideas ------------------------
-   // Adoptable Status ---> Location
-   // sex ---> Spay/neutured
-   // Chip ID #
-   // when pet was added
-   // Pet est age
-   // Pet weight
-   // Primary/Secondary color
-   // location
-
 });
 
-// Text Index name is PetsTextIndex
+//Text Index creation
+petSchema.index({
+                     name: 'text',
+                     species: 'text',
+                     breed:'text',
+                     description: 'text'
+               });
 
 module.exports = mongoose.model("Pet", petSchema);

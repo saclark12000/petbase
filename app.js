@@ -24,7 +24,7 @@ var indexRoutes             = require("./routes/index"),
 // var seedDB                  = require("./seedDB");
 
 //Mongoose
-mongoose.connect(process.env.DB_ACCESS, { useNewUrlParser: true });
+mongoose.connect(process.env.DB_ACCESS, { useNewUrlParser: true,  'useCreateIndex': true, autoIndex: true});
 
 //app setup    
 var app = express();
@@ -60,6 +60,7 @@ app.use("/pets", petRoutes);
 app.use("/users", userRoutes);
 app.use("/search", searchRoutes);
 
+//Port setup to work with heroku or locally
 const port = process.env.PORT || 3000
 
 app.listen(port, function(){
