@@ -21,32 +21,6 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
     res.render("pets/new");
 });
 
-// // multer-sharp-s3 config
-// aws.config.update({
-//     secretAccessKey: process.env.AWSSECRETKEY,
-//     accessKeyId: process.env.AWSKEYID,
-//     region: 'us-east-2'
-//     });
-
-// var s3 = new aws.S3();
-
-// const storage = s3Storage({
-//     s3,
-//     Bucket: 'petbase',
-//     Key: function (req, file, cb) {
-//         console.log("USER ID ==>", req.user._id);
-//         console.log("userUploads/" + req.user._id + "/imgs/" + mongoose.Types.ObjectId() + path.extname(file.originalname))
-//         cb(null, "userUploads/" + req.user._id + "/imgs/" + mongoose.Types.ObjectId() + path.extname(file.originalname));
-//         },
-//     resize: {
-//       width: 250,
-//       height: 250,
-//       options: {fit: 'cover'}
-//     }
-//   });
-
-// const upload = multer({ storage: storage });
-
 //Create
 router.post("/", middleware.isLoggedIn, imgMan.upload.single('cover'), function(req, res){
     Pet.create(req.body.pet, function(err, newPet){
@@ -54,7 +28,6 @@ router.post("/", middleware.isLoggedIn, imgMan.upload.single('cover'), function(
             console.log(err);
         }else {
             //Sends uploaded file url out, processes the file and gets resized image url back
-            //console.log("FILE PATH ===>   ", req.file.key)
             newPet.images.cover = req.file.key;
             newPet.author.id = req.user._id;
             newPet.author.username = req.user.username;
@@ -84,20 +57,6 @@ router.get("/:id/edit", middleware.checkPetOwnership, function(req, res){
     });
 });
 
-// // Remove Cover Image
-// function deleteFile(file) {
-//     console.log('removing ==>', file)
-//     var params = {
-//         Bucket: 'petbase',
-//         Key: file
-//     };
-//     s3.deleteObject(params, function (err, data) {
-//         if (err) console.log(err, err.stack); // an error occurred
-//         else     console.log(data);           // successful response
-//     });
-// }
-
-
 //Update pet
 router.put("/:id", middleware.checkPetOwnership, imgMan.upload.single('cover'), function(req, res){
     
@@ -107,9 +66,8 @@ router.put("/:id", middleware.checkPetOwnership, imgMan.upload.single('cover'), 
         } else {
             if (req.file) {
                 //Removes old cover image
-                //console.log('updating to remove', foundPet.images.cover);
                 imgMan.deleteFile(foundPet.images.cover);
-                //Sends uploaded file url out, processes the file and gets resized image url back
+                //Sets url for cover image to uploaded image file
                 foundPet.images.cover = req.file.key;
             }
             foundPet.save();
@@ -119,10 +77,10 @@ router.put("/:id", middleware.checkPetOwnership, imgMan.upload.single('cover'), 
 });
 
 //Destroy pet
-router.delete("/:id", function(req, res){
+router.delete("/:id", middleware.checkPetOwnership, function(req, res){
     Pet.findByIdAndRemove(req.params.id, function(err, foundPet){
         if(err){
-            res.redirect("/");
+            console.log(err)
         } else {
             imgMan.deleteFile(foundPet.images.cover);
             res.redirect("/users/");

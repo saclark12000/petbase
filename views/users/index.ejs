@@ -1,6 +1,6 @@
 <% include ../partials/header %>
 <% include ../partials/navbarUp %>
-
+<script type="text/javascript" src="/js/pets/delete.js"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="/css/users/index.css">
 
 <div id="main">
@@ -25,7 +25,7 @@
            <i class="fas fa-edit"></i> Edit
           </a>
           <form id="delete-<%=currPet.id%>" action="/pets/<%= currPet.id %>?_method=DELETE" method="POST">
-            <a href="javascript:$('#delete-<%=currPet.id%>').submit();">
+            <a href="javascript:deletePet.delConfirm('<%=currPet.name%>', 'delete-<%=currPet.id%>');">
               <i class="far fa-trash-alt"></i></i> Delete
             </a>
           </form>
