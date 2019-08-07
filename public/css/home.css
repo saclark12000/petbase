@@ -70,16 +70,17 @@ html {
     letter-spacing: 1px;
 }
 
-.main a {
+.homelink {
     color: #593C97;
     text-decoration: none;
     border-bottom: 1px solid transparent;
     transition: color .8s, border-bottom 1s;
 }
 
-.main a:hover {
+.homelink:hover {
     color: #013220;
     border-bottom: 1px solid #013220;
+    cursor: pointer;
 }
 
 .main .mainAboutLink {
@@ -250,9 +251,47 @@ html {
     display: flex;
 }
 
+#blurbintro-content{
+    margin: auto;
+    width: 80%;
+}
+
+.menu-wrapper {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-header {
+    margin: 0;
+    margin-top: 10px;
+}
+
+.menu {
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 10px;
+    text-align: center;
+}
+
+.menu-item {
+    margin: 10px 0px;
+    list-style: none;
+}
+
+.content-paragraph {
+    margin: 10px 0px;
+}
+
 #blurbpetOwners{
     display:none;
     opacity: 0;
+}
+
+#blurbpetOwners-content{
+    margin: auto;
+    width: 80%;
 }
 
 #blurbadoptions{
@@ -260,7 +299,17 @@ html {
     opacity: 0;
 }
 
+#blurbadoptions-content{
+    margin: auto;
+    width: 80%;
+}
+
 #blurbprofessionals{
     display:none;
     opacity: 0;
+}
+
+#blurbprofessionals-content{
+    margin: auto;
+    width: 80%;
 }

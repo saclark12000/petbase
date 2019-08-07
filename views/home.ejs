@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>PETBASE</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico?v="+ Math.trunc(Math.random()*999)>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Oswald|Quicksand" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -21,24 +21,24 @@
             </div>
             <h1>Petbase</h1>
             <p class="animated fadeIn delay-1s">Connecting pets to the information we need to share.</p>
-            <a href="/search">Adoptable Pets</a>
+            <a class="homelink" href="/search">Adoptable Pets</a>
             
                 <% if (!currentUser){ %>
                     <div>
-                        <a class="" href="../login">Log in</a> or
-                        <a class="" href="../register">Sign up</a>
+                        <a class="homelink" href="../login">Log in</a> or
+                        <a class="homelink" href="../register">Sign up</a>
                     </div>
                 <% } else {%>
                     <div>
-                        <a class="" href="/users"><%=currentUser.username%>s Pets</a>
+                        <a class="homelink" href="/users"><%=currentUser.username%>s Pets</a>
                     </div>
                     <div>
-                        <a class="" href="/logout">Log out</a>
+                        <a class="homelink" href="/logout">Log out</a>
                     </div>
                 <% } %>
             <div class="mainAboutLink">
                 <i class="fas fa-sort-down"></i>
-                <a class="" href="#about"> What is Petbase? </a>
+                <a class="homelink" href="#about"> What is Petbase? </a>
                 <i class="fas fa-sort-down"></i>
             </div>
             <div class="main-padding">

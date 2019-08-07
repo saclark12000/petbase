@@ -20,4 +20,13 @@ $(document).ready(function() {
             active = this.id
         }
     })
+    $('.infoUserCatLink').click(function(){
+        if(this.id === "petOwnersLink") {
+            $('#petOwners').trigger('click');
+        } else if(this.id === "adoptionsLink") {
+            $('#adoptions').trigger('click');
+        } else if(this.id === "professionalsLink") {
+            $('#professionals').trigger('click');
+        }
+    })
 });

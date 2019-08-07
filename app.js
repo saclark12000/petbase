@@ -1,4 +1,4 @@
-//Dependancies
+//Dependencies
 var express                 = require("express"), 
     mongoose                = require("mongoose"),
     bodyParser              = require("body-parser"),
@@ -8,7 +8,8 @@ var express                 = require("express"),
     path                    = require('path'),
     multer                  = require('multer'),
     dotenv                  = require('dotenv').config();
-    aws                     = require('aws-sdk');
+    aws                     = require('aws-sdk'),
+    helmet                  = require('helmet');
 
 //Models
 var Pet                     = require("./models/pet");
@@ -29,6 +30,7 @@ mongoose.connect(process.env.DB_ACCESS, { useNewUrlParser: true,  'useCreateInde
 //app setup    
 var app = express();
 app.set('view engine', 'ejs');
+app.use(helmet());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, "/public")));
 // app.use(express.static(__dirname +"/public"));

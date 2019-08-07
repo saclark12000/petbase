@@ -6,7 +6,11 @@
   "scripts": {
     "start": "node app.js"
   },
-  "author": "",
+  "author": "Shawn Clark",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/saclark12000/petbase.git"
+  },
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "2.x",
@@ -15,6 +19,7 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
+    "helmet": "^3.20.0",
     "method-override": "^3.0.0",
     "mongoose": "^5.4.19",
     "multer": "^1.4.1",
