@@ -152,3 +152,32 @@ h2, p {
 .petcard .item {
     margin: 10px 0;
 }
+
+.inline {
+    display:inline;
+    margin: 0;
+    padding: 0;
+}
+
+.no-results-question{
+    margin: auto;
+    padding: 5px 15px;
+}
+
+.link-button {
+    display: inline;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 16px;
+    font-family: Quicksand;
+    color: #8C75B5;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color .8s;
+}
+
+.link-button:hover {
+    color: #013220;
+    cursor: pointer;
+}

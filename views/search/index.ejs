@@ -24,7 +24,24 @@
       <p>Browse all <%=results.length%> adoptable pet records.</p>
     <% } else { %>
       <p>Your search for <em><%= term %></em> had <%= results.length %> matches.</p>
-    <% } %>
+      <% if (results.length == 0) { %>
+        <div class="no-results-question"> That's ok though, you can search again. Unless you would you like to see
+            <form method="post" action="/search/results" class="inline">
+                <input type="hidden" name="search" value="dog">
+                <button type="submit" name="submit_param" value="submit_value" class="link-button">
+                  all adoptable dogs
+                </button>
+              </form>
+          , or 
+          <form method="post" action="/search/results" class="inline">
+              <input type="hidden" name="search" value="cat">
+              <button type="submit" name="submit_param" value="submit_value" class="link-button">
+                  all adoptable cats
+              </button>
+            </form>
+          , or 
+          <a href="/search" class="link-button">all adoptable pets</a>?</div>
+    <% }} %>
   </div>
   <% results.forEach(function(currPet){%>
     <a href="/pets/<%= currPet.id %>" id="pc-<%=currPet.id%>" class="petcard">
