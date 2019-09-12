@@ -245,3 +245,9 @@ small{
 .footer{
     height: 32px;
 }
+
+.ck-editor__editable_inline {
+    min-height: 250px;
+    min-width: 350px;
+    width: 65vw;
+}

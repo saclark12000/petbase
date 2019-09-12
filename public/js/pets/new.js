@@ -1,4 +1,20 @@
-var breedObj = {}
+var breedObj = {};
+var editorObj = {};
+
+// CKEditor 5 (User Description Inputs)
+editorObj.loadEditor = function(){
+    ClassicEditor
+    .create( document.querySelector( '#description' ), {
+        removePlugins: [ 'image', 'link', 'mediaEmbed', 'blockQuote' ],
+        toolbar: [ 'heading', 'alignment', 'bold', 'italic', 'bulletedList', 'numberedList', 'undo', 'redo' ]
+    }  )
+    .then( editor => {
+        console.log( editor );
+    } )
+    .catch( error => {
+        console.error( error );
+    } );
+}
 
 //Img upload preview handlers -------------------------------
 //Displays the direction div and hides image div
@@ -3109,4 +3125,4 @@ breedObj.cat = [
 	}
 ];
 
-module.exports = breedObj;
+module.exports = breedObj, editorObj;

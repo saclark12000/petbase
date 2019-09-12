@@ -1,7 +1,9 @@
 <% include ../partials/header %>
 <% include ../partials/navbarUp %>
+
 <script type="text/javascript" src="/js/pets/new.js"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="/css/pets/new.css">
+<script src="/@ckeditor/ckeditor5-build-classic/build/ckeditor.js"></script>
 
 <form action="/pets" method="POST" enctype="multipart/form-data">
     <div class="container">
@@ -85,4 +87,10 @@
         <div class="footer"></div>
     </div>
 </form>
+
+<script>
+    //Formats textarea with CKEditor
+    editorObj.loadEditor();
+</script>
+
 <% include ../partials/footer %>

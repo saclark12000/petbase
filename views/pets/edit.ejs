@@ -2,6 +2,7 @@
 <% include ../partials/navbarUp %>
 <script type="text/javascript" src="/js/pets/new.js"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="/css/pets/new.css">
+<script src="/@ckeditor/ckeditor5-build-classic/build/ckeditor.js"></script>
 
 <form action="/pets/<%=pet._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
 <div class="container">
@@ -62,7 +63,7 @@
     <div class="row">
         <div class="description-container">
             <label for="description">Description:</label>
-            <textarea id="description" class="" maxlength="500"  name="pet[description]" rows="3"><%= pet.description %></textarea>
+            <textarea id="description" class="" maxlength="500"  name="pet[description]" rows="3"><%-pet.description%></textarea>
         </div>
     </div>
     <div class="row">
@@ -83,4 +84,10 @@
     <div class="footer"></div>
 </div>
 </form>
+
+<script>
+    //Formats textarea with CKEditor
+    editorObj.loadEditor();
+</script>
+
 <% include ../partials/footer %>

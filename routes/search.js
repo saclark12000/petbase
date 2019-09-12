@@ -1,4 +1,5 @@
-var express = require("express");
+var express = require("express"),
+    sanitizeHtml = require('sanitize-html');
 var router = express.Router();
 var Pet = require("../models/pet");
 //var middleware = require("../middleware");
@@ -20,18 +21,19 @@ router.get("/", function(req, res){
 
 //Show route, returns results for all adoptable pets and text search done by user
 router.post("/results", function(req, res){
+    var sanitizedSearch = sanitizeHtml(req.body.search.toLowerCase());
 
-    if (req.body.search.toLowerCase() == "dog" || req.body.search.toLowerCase() == "cat"){
+    if (sanitizedSearch == "dog" || sanitizedSearch == "cat"){
         Pet.find({
             adoptable: {
                 $eq: true
             },
-            species : {$eq: req.body.search.toLowerCase()}
+            species : {$eq: sanitizedSearch}
             }, function(err, searchResults){
             if(err){
                 console.log(err)
             } else {
-                res.render("search/index", {results: searchResults, term: req.body.search});
+                res.render("search/index", {results: searchResults, term: sanitizedSearch});
             }
         });
     } else {
@@ -41,19 +43,19 @@ router.post("/results", function(req, res){
             },
             $or : [{
                 species: {
-                    $regex: req.body.search.split(" ").map(str => "("+str+")").join('|'),
+                    $regex: sanitizedSearch.split(" ").map(str => "("+str+")").join('|'),
                     $options: "i"
                 }},{
                 breed: {
-                    $regex: req.body.search.split(" ").map(str => "("+str+")").join('|'),
+                    $regex: sanitizedSearch.split(" ").map(str => "("+str+")").join('|'),
                     $options: "i"
                 }},{
                 description: {
-                    $regex: req.body.search.split(" ").map(str => "("+str+")").join('|'),
+                    $regex: sanitizedSearch.split(" ").map(str => "("+str+")").join('|'),
                     $options: "i"
                 }},{
                 name: {
-                    $regex: req.body.search.split(" ").map(str => "("+str+")").join('|'),
+                    $regex: sanitizedSearch.split(" ").map(str => "("+str+")").join('|'),
                     $options: "i"
                 }}
 
@@ -62,7 +64,7 @@ router.post("/results", function(req, res){
             if(err){
                 console.log(err)
             } else {
-                res.render("search/index", {results: searchResults, term: req.body.search});
+                res.render("search/index", {results: searchResults, term: sanitizedSearch});
             }
         });
     }

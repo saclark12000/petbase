@@ -1,6 +1,7 @@
 <% include ../partials/header %>
 <% include ../partials/navbarUp %>
 <script type="text/javascript" src="/js/pets/delete.js"></script>
+
 <link rel="stylesheet" type="text/css" media="screen" href="/css/pets/show.css">
 
 <div class="container">
@@ -33,8 +34,11 @@
     </div>
     <div class="row">
         <div class="description-container">
-            <%=pet.description%>
+            <div id="pet-description"></div> 
         </div>
+        <script>
+                document.getElementById("pet-description").innerHTML=`<%-pet.description%>`
+        </script>
     </div>
     <div class="row">
         <% if (currentUser && pet.author.id.equals(currentUser.id)) { %>

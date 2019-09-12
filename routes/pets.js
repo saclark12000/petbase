@@ -3,13 +3,12 @@ var express = require("express"),
     s3Storage = require('multer-sharp-s3'),
     aws = require('aws-sdk'),
     path    = require('path'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    sanitizeHtml = require('sanitize-html');
 var router = express.Router({ mergeParams: true });
 var Pet = require("../models/pet");
 var middleware = require("../middleware");
 var imgMan = require('../public/js/pets/image-manipulation');
-
-
 
 //Index route, all pets list
 router.get("/", function(req, res){
@@ -31,6 +30,10 @@ router.post("/", middleware.isLoggedIn, imgMan.upload.single('cover'), function(
             newPet.images.cover = req.file.key;
             newPet.author.id = req.user._id;
             newPet.author.username = req.user.username;
+            newPet.description = sanitizeHtml(req.body.pet.description.replace(/\'|\"|\`/g, "\'"), {
+                allowedTags: [ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'p', 'ul', 'ol', 'nl',
+                    'li', 'b', 'i', 'strong', 'em', 'strike', 'code', 'hr', 'br' ]
+                });
             newPet.save();
             res.redirect("/pets/" + newPet.id);
         }
@@ -70,6 +73,10 @@ router.put("/:id", middleware.checkPetOwnership, imgMan.upload.single('cover'), 
                 //Sets url for cover image to uploaded image file
                 foundPet.images.cover = req.file.key;
             }
+            foundPet.description = sanitizeHtml(req.body.pet.description.replace(/\'|\"|\`/g, "\'"), {
+                allowedTags: [ 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'p', 'ul', 'ol', 'nl',
+                    'li', 'b', 'i', 'strong', 'em', 'strike', 'code', 'hr', 'br' ]
+                });
             foundPet.save();
             res.redirect("/users/");
         }

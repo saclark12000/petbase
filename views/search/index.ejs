@@ -1,7 +1,7 @@
 <% include ../partials/header %>
 <% include ../partials/navbarUp %>
 
-<script type="text/javascript" src="/js/pets-index.js"></script>
+<script type="text/javascript"  src="/sanitize-html/dist/sanitize-html.js"></script>
 <link rel="stylesheet" type="text/css" media="screen" href="/css/search/index.css">
 
 <div id="main">
@@ -59,9 +59,16 @@
         <div class="item">
           <%= currPet.breed.length > 1 ? "Mixed Breed": currPet.breed %>
         </div>
-        <div class="item">
-          <%= currPet.description.length > 100 ? currPet.description.substring(0, 25) + "...": currPet.description %>
-        </div>    
+        <div class="item" id="desc-<%=currPet.id%>">
+          </div> 
+        <script>
+          //Removes html tags from description and assigns to each pet
+          var descriptionSansHtml = sanitizeHtml( "<%-currPet.description.length > 100 ? currPet.description.substring(0, 25) + "...": currPet.description%>", {
+            allowedTags: [],
+            allowedAttributes: {}
+           } )
+          document.getElementById("desc-<%=currPet.id%>").innerHTML= descriptionSansHtml;
+        </script>
       </div> 
     </a>
   <%})%>

@@ -119,6 +119,7 @@ h2, p {
 }
 
 .petcard h3{
+    font-size: 22px;
     margin:0;
 }
 
@@ -146,7 +147,7 @@ h2, p {
 }
 
 .petcard .right.short{
-    height: 75px;
+    height: 35px;
 }
 
 .petcard .item {
